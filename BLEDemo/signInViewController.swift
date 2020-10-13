@@ -2,8 +2,7 @@
 //  signInViewController.swift
 //  BLEDemo
 //
-//  Created by Abdulaziz Alharbi on 12/2/18.
-//  Copyright © 2018 Rick Smith. All rights reserved.
+//  Created by Duaa alharbi 1607217 - Doaa altawil 0932785
 //
 
 import UIKit
