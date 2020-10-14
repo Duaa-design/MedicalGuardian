@@ -70,6 +70,9 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     @IBOutlet weak var yearTextField: UITextField!
      var y = String()
     
+    //
+   
+    
     @IBOutlet weak var getYourHeartActivitesOn: UILabel!
     
     
