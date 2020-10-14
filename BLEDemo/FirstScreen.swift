@@ -14,13 +14,13 @@ class FirstScreen: UIViewController {
         super.viewDidLoad()
     
      if Auth.auth().currentUser != nil {
-           // performSegue(withIdentifier: "toTheMain", sender: self)
+            performSegue(withIdentifier: "toTheMain", sender: self)
             
             
        }
 
         // Do any additional setup after loading the view.
-   // }
+    }
     
 
     /*
@@ -36,5 +36,7 @@ class FirstScreen: UIViewController {
 
 
 
+        
 
-}
+
+    //}
