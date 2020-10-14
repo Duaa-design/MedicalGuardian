@@ -12,15 +12,15 @@ class FirstScreen: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       /*****/
-       //if Auth.auth().currentUser != nil {
-            performSegue(withIdentifier: "toTheMain", sender: self)
+    
+     if Auth.auth().currentUser != nil {
+           // performSegue(withIdentifier: "toTheMain", sender: self)
             
             
-        }
+       }
 
         // Do any additional setup after loading the view.
-    }
+   // }
     
 
     /*
@@ -31,6 +31,10 @@ class FirstScreen: UIViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-    */
+   */
 
-//}
+
+
+
+
+}
