@@ -10,6 +10,10 @@ import Firebase
 
 class FirstScreen: UIViewController {
 
+    
+    @IBOutlet weak var image: UIImageView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -39,4 +43,6 @@ class FirstScreen: UIViewController {
         
 
 
-    //}
+    //
+    
+}
