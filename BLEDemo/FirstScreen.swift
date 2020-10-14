@@ -12,8 +12,8 @@ class FirstScreen: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       if Auth.auth().currentUser != nil {
+       /*****/
+       //if Auth.auth().currentUser != nil {
             performSegue(withIdentifier: "toTheMain", sender: self)
             
             
@@ -33,4 +33,4 @@ class FirstScreen: UIViewController {
     }
     */
 
-}
+//}
