@@ -18,13 +18,14 @@ class signInViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var passwordTextField: UITextField!
     
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.emailTextField.delegate = self
         self.passwordTextField.delegate = self
-
+        
         // Do any additional setup after loading the view.
     }
     
