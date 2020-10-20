@@ -17,13 +17,20 @@ class signUpViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var passwordTextField: UITextField!
     
-
+    
+    
+   
+    @IBAction func textlable(_ sender: Any) {
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         
         self.emailTextField.delegate = self
         self.passwordTextField.delegate = self
+        
         // Do any additional setup after loading the view.
     }
     
@@ -72,6 +79,7 @@ class signUpViewController: UIViewController, UITextFieldDelegate {
         
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
+        
         
         return(true)
         
