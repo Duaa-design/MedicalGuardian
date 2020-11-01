@@ -16,10 +16,11 @@ class FirstScreen: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        //functhion viewDidLoad to view has been loaded into memory
+        
      if Auth.auth().currentUser != nil {
             performSegue(withIdentifier: "toTheMain", sender: self)
-            
+     //currentUser ,A Boolean value indicating whether this participant represents the owner of this account
             
        }
 
