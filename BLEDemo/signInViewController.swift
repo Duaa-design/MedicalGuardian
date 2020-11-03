@@ -22,7 +22,7 @@ class signInViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //functhion viewDidLoad to view has been loaded into memory
+        //functhion viewDidLoad to view has been loaded
         
         self.emailTextField.delegate = self
         self.passwordTextField.delegate = self
@@ -56,15 +56,14 @@ class signInViewController: UIViewController, UITextFieldDelegate {
                 alertVC.addAction(okAction)
                 
                 self.present(alertVC, animated: true, completion: nil)
-                //animated A Boolean value to updating the context, completion routine to be executed when the request completes , NULL mean the request is synchronous
+                
                 
             } else {
                 print("Log in successful!")
                 
-                SVProgressHUD.dismiss()
                 
                 self.performSegue(withIdentifier: "toTheMain", sender: self)
-                //Performs to the specified segue.
+                //Performs to the specified segue to main page.
                 
             }
             
@@ -77,7 +76,7 @@ class signInViewController: UIViewController, UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         self.view.endEditing(true)
-        //function to representing the location, size, movement, and force of a touch occurring on the screen.
+        ///???
         
     }
     
@@ -93,17 +92,5 @@ class signInViewController: UIViewController, UITextFieldDelegate {
     }
     
 
-
 }
-
-
-/*
-// MARK: - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    // Get the new view controller using segue.destination.
-    // Pass the selected object to the new view controller.
-}
-*/
 

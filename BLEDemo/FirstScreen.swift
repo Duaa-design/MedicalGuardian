@@ -20,7 +20,7 @@ class FirstScreen: UIViewController {
         
      if Auth.auth().currentUser != nil {
             performSegue(withIdentifier: "toTheMain", sender: self)
-     //currentUser ,A Boolean value indicating whether this participant represents the owner of this account
+     //currentUser represents if that participant is the owner of this account
             
        }
 
@@ -28,22 +28,4 @@ class FirstScreen: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-   */
-
-
-
-
-        
-
-
-    //doaaomar
-    
 }
