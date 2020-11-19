@@ -61,6 +61,7 @@ class signInViewController: UIViewController, UITextFieldDelegate {
             } else {
                 print("Log in successful!")
                 
+                SVProgressHUD.dismiss()
                 
                 self.performSegue(withIdentifier: "toTheMain", sender: self)
                 //Performs to the specified segue to main page.
