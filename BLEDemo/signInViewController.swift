@@ -61,6 +61,7 @@ class signInViewController: UIViewController, UITextFieldDelegate {
             } else {
                 print("Log in successful!")
                 
+                SVProgressHUD.dismiss()
                 
                 self.performSegue(withIdentifier: "toTheMain", sender: self)
                 //Performs to the specified segue to main page.
@@ -76,7 +77,7 @@ class signInViewController: UIViewController, UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         self.view.endEditing(true)
-        ///???
+       
         
     }
     

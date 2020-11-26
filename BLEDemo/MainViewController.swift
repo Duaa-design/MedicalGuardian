@@ -8,17 +8,6 @@
 import UIKit
 import CoreBluetooth
 import Firebase
-//import AAInfographics
-//import JBChartView
-
-//import SwiftChartView
-
-//import Highcharts
-//import ScrollableGraphView
-//import ChartProgressBar
-
-//import AAInfographics
-//import SwiftCharts
 import Charts
 
 
@@ -34,19 +23,10 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     var mainPeripheral:CBPeripheral? = nil
     var mainCharacteristic:CBCharacteristic? = nil
     
-    //var timer = Timer()
-      
-    var unique = [String]() // check please
+    var unique = [String]()
     var previousValue: Double? = nil
     var currentValue: Double? = nil
     var differenceHolder: Int? = nil
-    
-    
-    //var icounter: Int? = nil
-    
-    //var flag : Int = 0
-    
-    //var flagClear: Int = 0
     
     var tsFlagHolder = [String]()
     
@@ -70,7 +50,6 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     @IBOutlet weak var yearTextField: UITextField!
      var y = String()
     
-    //
    
     
     @IBOutlet weak var getYourHeartActivitesOn: UILabel!
@@ -93,10 +72,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       // getDataButton.setTitle("", for: [])
-       // getDataButton.isEnabled = false
-        
+                
         if(tsFlagHolder.isEmpty){
             
             FlagButton.setTitle("", for: [])
@@ -111,9 +87,6 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
 
      
         customiseNavigationBar()
-        
-        //theChart()
-         /* timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.currentTime), userInfo: nil, repeats: true)*/
         
     }
     
@@ -293,13 +266,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                     let test = String(stringValue.filter { !"\r\n".contains($0) })
                     
                     
-                    
-                 
-                        
                         currentTime(theValue: test)
-                    
-                    
-                    // var toInt = Int(stringValue)
                     
                     
                     
@@ -307,66 +274,6 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                     
                 }
                 
-                
-                            /*let data:Data = characteristic.value! //get a data object from the CBCharacteristic
-                let number = data.withUnsafeBytes {
-                    (pointer: UnsafePointer<Int>) -> Int in
-                    return pointer.pointee
-                }
-                
-                
-                print(number)
-                var stringText = String(number)
-                recievedMessageText.text = stringText
-                
-                 DB.childByAutoId().setValue(Int(number))
-            
-                //recievedMessageText.text = String(intValue)
-                
-                 }
-                
-                
-               // var heartRate: Int? = Int(stringValue)
-                
-                /*
-                DB.childByAutoId().setValue(stringValue)
-                
-                print()
-                DB.observe(.childAdded) { (DataSnapshot) in
-                    
-                    if let heartRateInteger = DataSnapshot.value as? Int{
-                        
-                        print(heartRateInteger)
-                        
-                        
-                    }
-                    
-                    /*if let heartRateString = DataSnapshot.value{
-                        
-                        print("/n")
-                        
-                        print(heartRateString)
-                        
-                        
-                    }*/
-                    */
-                    
-                    
-                   
-                   
-                    
-               
-                
-                
-            }
-        }
-        
-        
-    }
-
- */
- 
-
 
 }
 }
@@ -443,11 +350,6 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                     
                      self.tsFlagHolder.append(TimeStamp)
                      self.unique = Array(Set(self.tsFlagHolder))
-                    
-                   
-                    
-                   
-                    
                     self.FlagButton.setTitle("Flags", for: [])
                     self.FlagButton.isEnabled = true
                     self.FlagButton.tintColor = UIColor.red
@@ -479,53 +381,13 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                 
             }
             
-            
-            //self.chartSetter(xaxis: 9, yaxis: heartRateV)
-            
-           
-        // self.HRLable.text = String(heartRateV)
-            
-          
-            
-        
-            
-            
-            
+               
             
         }
         
         
         
     }
-    
-    /*
-    
-    func chartSetter(xaxis: Double, yaxis: Int){
-        
-        
-        
-        ourChart.noDataText = "No Data is provided"
-        
-        var chartArray: [BarChartDataEntry] = []
-        
-        let chartData = BarChartDataEntry(x: xaxis, y: Double(yaxis))
-        
-        
-        chartArray.append(chartData)
-        
-        let chartDataSet = BarChartDataSet(values:chartArray, label: "HeartRate")
-        let barChartDataObj = BarChartData()
-        barChartDataObj.addDataSet(chartDataSet)
-        
-        ourChart.data = barChartDataObj
-        
-        chartDataSet.colors = ChartColorTemplates.colorful()
-        
-        ourChart.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
-        
-       
-        
-    }*/
     
     
     
@@ -556,62 +418,6 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         }
     
     
-    
-   /* func OldtheChart(hR: [Double], tS: String){
-        
-        var lineChartEntry = [ChartDataEntry]()
-        for i in 0..<hR.count{
-           // icounter = i
-            let values = ChartDataEntry(x: Double(i), y: hR[i])
-            lineChartEntry.append(values)
-        }
-        let line1 = LineChartDataSet(values: lineChartEntry, label: "Heart Rate")
-
-        /*
-        
-         if(icounter! > 0 && icounter! < hR.count){
-         
-         previousValue = hR[icounter!-1]
-         currentValue = hR[icounter!]
-         differenceHolder = Int(currentValue!) - Int(previousValue!)
-         if(differenceHolder! >= 30 || differenceHolder! <= -30){
-         
-         
-         flag = flag + 1
-         
-         
-         if (flag > 4){
-         
-         
-         tsFlagHolder.append(tS)
-         FlagButton.setTitle("Flags", for: [])
-         FlagButton.isEnabled = true
-         FlagButton.tintColor = UIColor.red
-         
-         
-         flag = 0
-         }
-         }
-         }
-        */
-        
-        line1.colors = [NSUIColor.red]
-        
-        let data = LineChartData()
-        data.addDataSet(line1)
-        line1.valueTextColor = UIColor.white
-        lineChart1.tintColor = UIColor.white
-        lineChart1.xAxis.axisLineColor = UIColor.white
-        lineChart1.xAxis.labelTextColor = UIColor.white // this is the one
-        lineChart1.rightAxis.labelTextColor = UIColor.white // the one
-        lineChart1.leftAxis.labelTextColor = UIColor.white // the one
-        
-        lineChart1.data = data
-        
-        
-    }*/
-    
-    
   
     
     @IBAction func flagButtonIsPressed(_ sender: Any) {
@@ -635,8 +441,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             
         }else{
             
-           // flag = 0
-          //  FlagTableView.TimeStampArray = []
+           
             tsFlagHolder = []
             self.unique = []
             FlagButton.setTitle("", for: [])
@@ -731,8 +536,6 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                 
             }
         
-        
-       // self.OldtheChart(hR: OldheartRateArray, tS: OldTimeStamp)
         
     }
     }
