@@ -89,7 +89,7 @@ class signInViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.resignFirstResponder()
         
         return(true)
-        //Notifies this object that it has been asked to relinquish its status as first responder in its window.
+        
     }
     
 

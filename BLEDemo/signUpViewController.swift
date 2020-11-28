@@ -59,7 +59,7 @@ class signUpViewController: UIViewController, UITextFieldDelegate {
                 
                 alertVC.addAction(okAction)
                 self.present(alertVC, animated: true, completion: nil)
-                //animated A Boolean value to updating the context, completion routine to be executed when the request completes , NULL mean the request is synchronous
+                
                 
             } else {
                 print("Registration Successful!")
