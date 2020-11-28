@@ -48,7 +48,6 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     @IBOutlet weak var yearTextField: UITextField!
      var y = String()
     
-   
     
     @IBOutlet weak var getYourHeartActivitesOn: UILabel!
     
@@ -57,12 +56,12 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     @IBOutlet weak var lineChart1: LineChartView!
     
     
-
-    
     let BLEService = "DFB0"
     let BLECharacteristic = "DFB1"
     
     @IBOutlet weak var recievedMessageText: UILabel!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,6 +109,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     }
     
     
+    
     // function to prepare the destination from the main view to 2 identifiers ( scan view, flag view )
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -132,6 +132,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         
     }
     
+    
     // MARK: Button Methods
     @objc func scanButtonPressed() {
         performSegue(withIdentifier: "scan-segue", sender: nil)
@@ -144,6 +145,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
   
     
+    
     // MARK: - CBCentralManagerDelegate Methods
     
     // function to tell the delegate  manager disconnected from a peripheral
@@ -154,11 +156,16 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         print("Disconnected" + peripheral.name!)
     }
     
+    
+    
     //  function to tell the delegate to update the state
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         print(central.state)
     }
+    
+    
+    
     
     // MARK: CBPeripheralDelegate Methods
     
@@ -188,6 +195,8 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             
         }
     }
+    
+    
     
     
     // function to discovering the peripheral’s services and characteristics.
@@ -276,6 +285,9 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
 }
 }
 }
+    
+    
+    
    
     //  function to take the value of heart rate and current time then to send the value to firebase.
     
@@ -371,6 +383,8 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         
     }
     
+    
+    
     // function to display heartbeat as chart
     
     func theChart(hR: [Double]){
@@ -408,7 +422,8 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     }
     
     
-    //function to get old  heartbeat data
+    
+    //function button get data
     
     @IBAction func getDataButtonPressed(_ sender: Any) {
         
@@ -435,6 +450,9 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         
         
     }
+    
+    
+    
     
     // function to get old heartbeat data
     

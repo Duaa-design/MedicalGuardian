@@ -9,7 +9,7 @@ import UIKit
 
 class FlagTableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
-    //UITableViewDataSource: The methods adopted by the object you use to manage data and provide cells for a table view.
+    //UITableViewDataSource: use to manage data and provide cells for a table view.
     
     var TimeStampArray = [String]()
     
@@ -19,7 +19,6 @@ class FlagTableView: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //functhion viewDidLoad to view has been loaded into memory
         
         timeStampeTableView.dataSource = self
         timeStampeTableView.delegate = self
