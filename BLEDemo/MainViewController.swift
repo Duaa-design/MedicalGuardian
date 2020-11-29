@@ -35,7 +35,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
     
     
-    let FlagTableViewObj: FlagTableView? = nil
+    //let FlagTableViewObj: FlagTableView? = nil
     
     
         let DB = Database.database().reference()
