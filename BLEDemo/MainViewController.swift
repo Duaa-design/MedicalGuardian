@@ -22,12 +22,10 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     var manager:CBCentralManager? = nil
     var mainPeripheral:CBPeripheral? = nil
     var mainCharacteristic:CBCharacteristic? = nil
-    
     var unique = [String]()
     var previousValue: Double? = nil
     var currentValue: Double? = nil
     var differenceHolder: Int? = nil
-    
     var tsFlagHolder = [String]()
     
     @IBOutlet weak var getDataButton: UIButton!
@@ -50,25 +48,20 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     @IBOutlet weak var yearTextField: UITextField!
      var y = String()
     
-   
     
     @IBOutlet weak var getYourHeartActivitesOn: UILabel!
     
-    
-    
-    
     @IBOutlet weak var FlagButton: UIButton!
-    
     
     @IBOutlet weak var lineChart1: LineChartView!
     
-    
-
     
     let BLEService = "DFB0"
     let BLECharacteristic = "DFB1"
     
     @IBOutlet weak var recievedMessageText: UILabel!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,19 +72,17 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             FlagButton.isEnabled = false
             }
         
-        
         manager = CBCentralManager(delegate: self, queue: nil);
         
         print(DB)
-        
 
-     
         customiseNavigationBar()
         
     }
     
     
    
+    // function to create custom navication bar
     
     func customiseNavigationBar () {
         
@@ -117,6 +108,10 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         
     }
     
+    
+    
+    // function to prepare the destination from the main view to 2 identifiers ( scan view, flag view )
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if (segue.identifier == "scan-segue") {
@@ -137,6 +132,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         
     }
     
+    
     // MARK: Button Methods
     @objc func scanButtonPressed() {
         performSegue(withIdentifier: "scan-segue", sender: nil)
@@ -149,7 +145,11 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
   
     
-    // MARK: - CBCentralManagerDelegate Methods    
+    
+    // MARK: - CBCentralManagerDelegate Methods
+    
+    // function to tell the delegate  manager disconnected from a peripheral
+    
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         mainPeripheral = nil
         customiseNavigationBar()
@@ -157,11 +157,20 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     }
     
     
+    
+    //  function to tell the delegate to update the state
+    
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         print(central.state)
     }
     
+    
+    
+    
     // MARK: CBPeripheralDelegate Methods
+    
+    // function to show a generic identifier common to every Bluetooth device (universally unique identifieridentifier)
+    
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         
         for service in peripheral.services! {
@@ -186,6 +195,11 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             
         }
     }
+    
+    
+    
+    
+    // function to discovering the peripheral’s services and characteristics.
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
 
@@ -261,30 +275,21 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                 
                 let stringValue = valueFromBLE
                    
-                    
-                    
                     let test = String(stringValue.filter { !"\r\n".contains($0) })
                     
-                    
                         currentTime(theValue: test)
-                    
-                    
-                    
+
                     recievedMessageText.text = test
                     
                 }
-                
-
 }
 }
 }
     
-    func timeSetter(){
-        
-        
-        
-        
-    }
+    
+    
+   
+    //  function to take the value of heart rate and current time then to send the value to firebase.
     
    @objc func currentTime(theValue: String){
         
@@ -307,9 +312,11 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     
     }
     
+    
+    
+    // function to Retriever current data for a heartbeat and display as chart
+    
     func dataRetriever(year: Int, month: Int, day: Int, hour: Int, min: Int, sec: Int){
-        
-        
         var heartRateArray = [Double]()
         var TimeStamp = String()
         
@@ -320,9 +327,6 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             if let timeStampDataBase = dataBaseValue?["TimeStamp "] {
                 
                 TimeStamp = timeStampDataBase
-               // let timeStampDataBasetoDouble = Double(timeStampDataBase)!
-               // TimeStampV = timeStampDataBasetoDouble
-                 //print(timeStampDataBase)
                 
             }
             if let heartBeatFromDataBase = dataBaseValue?["HeartRate"]{
@@ -330,10 +334,8 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                 var heartRateRetrived = heartBeatFromDataBase
                 
                 if(heartRateRetrived.contains("#")){ //maybe a problem here
-                     //cutting and changing here
-                   // heartRateRetrived.remove(at: heartRateRetrived.endIndex) // error my occure
                     
-                    var test = String(heartRateRetrived.filter { !"#".contains($0) }) // if it works old need to be fixed
+                    var test = String(heartRateRetrived.filter { !"#".contains($0) })
                     
                     if(test == ""){
                         
@@ -345,22 +347,18 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                         
                         var toDouble = heartRateRetrivedToDouble
                             heartRateArray.append(toDouble)
-                        
                     }
                     
-                     self.tsFlagHolder.append(TimeStamp)
-                     self.unique = Array(Set(self.tsFlagHolder))
+                    self.tsFlagHolder.append(TimeStamp)
+                    self.unique = Array(Set(self.tsFlagHolder))
                     self.FlagButton.setTitle("Flags", for: [])
                     self.FlagButton.isEnabled = true
                     self.FlagButton.tintColor = UIColor.red
-                    
                     self.theChart(hR: heartRateArray)
-                    
                     
                 }else{
                 
-                //cutting and changing here
-                    
+              
                     if(heartRateRetrived == ""){
                         
                         heartRateRetrived = "50"
@@ -381,15 +379,13 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                 
             }
             
-               
-            
         }
-        
-        
         
     }
     
     
+    
+    // function to display heartbeat as chart
     
     func theChart(hR: [Double]){
         
@@ -421,14 +417,13 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
   
     
     @IBAction func flagButtonIsPressed(_ sender: Any) {
-        
-    
-        
             performSegue(withIdentifier: "toFlagTableView", sender: self)
-        
         
     }
     
+    
+    
+    //function button get data
     
     @IBAction func getDataButtonPressed(_ sender: Any) {
         
@@ -440,7 +435,6 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
           getYourHeartActivitesOn.text = "Please enter date"
             
         }else{
-            
            
             tsFlagHolder = []
             self.unique = []
@@ -457,8 +451,12 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
         
     }
     
+    
+    
+    
+    // function to get old heartbeat data
+    
     func getOldHeartRate(month: String, day: String, year: String){
-        
         
         var OldheartRateArray = [Double]()
         var OldTimeStamp = String()
@@ -470,9 +468,6 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
             if let OldtimeStampDataBase = OlddataBaseValue?["TimeStamp "] {
                 
                 OldTimeStamp = OldtimeStampDataBase
-                // let timeStampDataBasetoDouble = Double(timeStampDataBase)!
-                // TimeStampV = timeStampDataBasetoDouble
-                //print(timeStampDataBase)
                 
             }
             if let OldheartBeatFromDataBase = OlddataBaseValue?["HeartRate"]{
@@ -480,8 +475,6 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                 var OldheartRateRetrived = OldheartBeatFromDataBase
                 
                 if(OldheartRateRetrived.contains("#")){
-                    //cutting and changing here
-                   // OldheartRateRetrived.remove(at: OldheartRateRetrived.endIndex) // error my occure
                     
                      var Oldtest = String(OldheartRateRetrived.filter { !"#".contains($0) })
                     
@@ -502,10 +495,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                     }
                     
                     self.tsFlagHolder.append(OldTimeStamp)
-                    self.unique = Array(Set(self.tsFlagHolder)) // no needed by it's fine
-                    
-                    
-                    
+                    self.unique = Array(Set(self.tsFlagHolder))
                     self.FlagButton.setTitle("Flags", for: [])
                     self.FlagButton.isEnabled = true
                     self.FlagButton.tintColor = UIColor.red
@@ -515,7 +505,7 @@ class MainViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
                     
                 }else{
                     
-                    //cutting and changing here
+                
                     
                     if(OldheartRateRetrived == ""){
                         

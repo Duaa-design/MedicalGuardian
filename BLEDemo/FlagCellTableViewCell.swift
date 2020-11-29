@@ -15,8 +15,8 @@ class FlagCellTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        //Initialization code
-        //Prepares the receiver for service after it has been loaded from an Interface Builder archive, or nib file.
+        
+        //Prepares the receiver for service after it has been loaded from an Interface
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
